@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# PARD 3기 웹파트 OT 과제
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
