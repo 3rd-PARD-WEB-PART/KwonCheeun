@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'NexonBazzi'; /*넥슨 배찌체 사용*/
+    src: url('./fonts/Bazzi.eot') format('eot'), /* 넥슨배찌체 폰트 파일 경로 설정 */
+         url('./fonts/Bazzi.woff') format('woff'); /* 웹 폰트 포맷 지정 */
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+} /*전체적으로 적용*/
+
+.f_style{
+    font-family: 'NexonBazzi', sans-serif;
+    width: auto;
+    height: auto;
+    line-height: 1;
+}
+
+.btn {
+    color: white;
+    background: rgb(180, 0, 0);
+    padding: 0.375rem, 0.75rem;
+    border: 1px solid rgb(180, 0, 0);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-family: 'NexonBazzi', sans-serif;
+}
