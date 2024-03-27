@@ -6,11 +6,6 @@
     font-style: normal;
 }
 
-*{
-    margin: 0;
-    padding: 0;
-} /*전체적으로 적용*/
-
 .f_style{
     font-family: 'NexonBazzi', sans-serif;
     width: auto;
