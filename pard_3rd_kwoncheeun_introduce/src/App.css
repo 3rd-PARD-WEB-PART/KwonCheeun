@@ -1,0 +1,64 @@
+@font-face {
+  font-family: 'NexonBazzi'; /*ë„¥ìŠ¨ ë°°ì°Œì²´ ì‚¬ìš©*/
+  src: url('./fonts/Bazzi.eot') format('eot'), /* ë„¥ìŠ¨ë°°ì°Œì²´ í°íŠ¸ íŒŒì¼ ê²½ë¡œ ì„¤ì • */
+       url('./fonts/Bazzi.woff') format('woff'); /* ì›¹ í°íŠ¸ í¬ë§· ì§€ì • */
+  font-weight: normal;
+  font-style: normal;
+}
+
+.App-header {
+  background-color: #000000;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'NexonBazzi', sans-serif; 
+  font-size: calc(10px + 2vmin);
+  line-height: 0.5; /* ì¤„ê¸€ ê°„ ê°„ê²© ì¡°ì ˆ */
+  color: rgb(0, 247, 45);
+  position: relative;
+}
+
+.puppy3 {
+  height: 30vmin; /* ì´ë¯¸ì§€ í¬ê¸°ë¥¼ ì¡°ì ˆ */
+  width: auto; /* ì´ë¯¸ì§€ ê°€ë¡œí­ì„ ì¡°ì ˆ */
+  position: absolute; /* ìš”ì†Œì˜ ìœ„ì¹˜ë¥¼ ì ˆëŒ€ ì¢Œí‘œë¡œ ì§€ì • */
+  bottom: 0;
+  left: 0;
+  margin: 1rem;
+}
+.chiikawa3 {
+  height: 30vmin;
+  width: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1rem;
+}
+.cat {
+  height: 30vmin;
+  width: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 1rem;
+  z-index: 1;
+}
+.penguin {
+  height: 30vmin;
+  width: auto;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 1rem;
+}
+
+.my_pic {
+  height: 40vmin;
+  width: auto;
+  margin: 1rem;
+  border: 0.25rem solid;
+  border-radius: 25%;
+  position: relative;
+}
