@@ -1,70 +1,24 @@
-# Getting Started with Create React App
+# WEB_PART_HW1
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+component, jsx를 이용하여 "오늘의 집" 인적사항 등록 페이지 만들어 보기
 
-## Available Scripts
+## ⏱️개발 기간⏱️
 
-In the project directory, you can run:
+2024.03.23 ~ 2024.03.29
 
-### `npm start`
+## 🙌Result🙌
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<img width="1440" alt="Screenshot 2024-03-29 at 1 38 20 PM" src="https://github.com/3rd-PARD-WEB-PART/KwonCheeun/assets/103431850/6e3fdf44-752c-44a3-a5ea-d3270d5d88ef">
+(밑으로 스크롤하면 이미 아이디가 있습니까? 부분도 보인다)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📚Study Reference📚
 
-### `npm test`
+margin: https://aboooks.tistory.com/78?category=516604
+padding: https://aboooks.tistory.com/81
+state & props: https://codingpracticenote.tistory.com/181
+useState: https://ko.legacy.reactjs.org/docs/hooks-state.html
+handleSubmit: https://mjn5027.tistory.com/40
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 😘개발자 소개😘
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+권채은 ➡️ 21학번, 전산심화&시각디자인 전공 학부생, pard_web 개발자
