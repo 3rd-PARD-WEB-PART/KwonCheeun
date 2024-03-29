@@ -4,7 +4,9 @@ component, jsx를 이용하여 "오늘의 집" 인적사항 등록 페이지 만
 
 ## ⏱️개발 기간⏱️
 
+
 2024.03.23 ~ 2024.03.29
+
 
 ## 🙌Result🙌
 
@@ -13,11 +15,11 @@ component, jsx를 이용하여 "오늘의 집" 인적사항 등록 페이지 만
 
 ## 📚Study Reference📚
 
-margin: https://aboooks.tistory.com/78?category=516604
-padding: https://aboooks.tistory.com/81
-state & props: https://codingpracticenote.tistory.com/181
-useState: https://ko.legacy.reactjs.org/docs/hooks-state.html
-handleSubmit: https://mjn5027.tistory.com/40
+margin: https://aboooks.tistory.com/78?category=516604  
+padding: https://aboooks.tistory.com/81  
+state & props: https://codingpracticenote.tistory.com/181  
+useState: https://ko.legacy.reactjs.org/docs/hooks-state.html  
+handleSubmit: https://mjn5027.tistory.com/40  
 
 ## 😘개발자 소개😘
 
