@@ -4,14 +4,11 @@ component, jsx를 이용하여 "오늘의 집" 인적사항 등록 페이지 만
 
 ## ⏱️개발 기간⏱️
 
-
 2024.03.23 ~ 2024.03.29
-
 
 ## 🙌Result🙌
 
 <img width="1440" alt="Screenshot 2024-03-29 at 1 38 20 PM" src="https://github.com/3rd-PARD-WEB-PART/KwonCheeun/assets/103431850/6e3fdf44-752c-44a3-a5ea-d3270d5d88ef">
-(밑으로 스크롤하면 이미 아이디가 있습니까? 부분도 보인다)
 
 ## 📚Study Reference📚
 
