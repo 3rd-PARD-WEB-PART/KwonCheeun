@@ -3,17 +3,58 @@
 }
 
 .logo {
-  height: auto;
-  width: auto;
+  width: 40%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  flex-direction: column;
+  background-color: #EAEBEF;
+}
+
+.register-container {
+  text-align: left;
+  padding-left: 6.5%;
+  padding-right: 6.5%;
+  width: 27%;
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 8px;
+  font-size: inherit;
+  margin-bottom: 10px;
+  border-radius: 0.25rem;
+  border: 1px solid #dbdbdb;
+}
+
+.input-container h3 {
+  font-size: 1.17em;
+  margin-bottom: 10px;
+}
+
+h4{
+  color: #292929;
+  text-align: center;
+}
+
+p{
+  color: #757575;
+}
+
+.btn {
+  width: 408px;
   color: white;
+  background: #35C5F0;
+  padding: 10px;
+  border: 1px solid #35C5F0;
+  border-radius: 0.25rem;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
