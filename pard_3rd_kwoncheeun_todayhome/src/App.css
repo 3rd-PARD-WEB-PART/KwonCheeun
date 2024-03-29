@@ -5,6 +5,7 @@
 .logo {
   width: 40%;
 }
+/* 전체적인 콘텐츠 너비와 로고 사진 너비를 일치*/
 
 .container {
   display: flex;
@@ -13,6 +14,7 @@
   flex-direction: column;
   background-color: #EAEBEF;
 }
+/*백그라운드 색상 지정*/
 
 .register-container {
   text-align: left;
@@ -22,6 +24,7 @@
   margin: 0 auto;
   background-color: #ffffff;
 }
+/*콘텐츠가 있는 부분 백그라운드 지정밑 패딩을 이용한 간격 조절*/
 
 .input-container input {
   width: 100%;
