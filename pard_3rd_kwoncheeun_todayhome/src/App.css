@@ -1,11 +1,12 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .logo {
   width: 40%;
 }
 /* 전체적인 콘텐츠 너비와 로고 사진 너비를 일치*/
+
 
 .container {
   display: flex;
