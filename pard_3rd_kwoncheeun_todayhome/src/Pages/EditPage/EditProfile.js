@@ -1,6 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
+import { useRecoilState } from 'recoil';
+import { emailState, nicknameState, birthDayState, homepageState, genderState, introduceState, profileImageState } from '../../Atom.js';
 
 import td_house from "../../img/오늘의집.png";
 import searchIcon from "../../img/search.png"
@@ -12,8 +14,13 @@ import arrow from "../../img/화살표.png"; // 화살표 이미지 추가
 import profilePlaceholder from '../../img/smile.png'; 
 
 function EditProfile() {
-    const [profileImage, setProfileImage] = useState(profilePlaceholder);
-    const [gender, setGender] = useState('');
+    const [email, setEmail] = useRecoilState(emailState);
+    const [nickname, setNickname] = useRecoilState(nicknameState);
+    const [birthDay, setBirthDay] = useRecoilState(birthDayState);
+    const [homepage, setHomepage] = useRecoilState(homepageState);
+    const [gender, setGender] = useRecoilState(genderState);
+    const [introduce, setIntroduce] = useRecoilState(introduceState);
+    const [profileImage, setProfileImage] = useRecoilState(profileImageState);
     const fileInputRef = useRef(null);
 
     const handleImageChange = (e) => {
@@ -21,131 +28,168 @@ function EditProfile() {
         setProfileImage(selectedImage);
     };
 
-    const handleClickProfileImage = () => {
-        fileInputRef.current.click();
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const handleNicknameChange = (e) => {
+        setNickname(e.target.value);
+    };
+
+    const handleBirthDayChange = (e) => {
+        setBirthDay(e.target.value);
+    };
+
+    const handleHomepageChange = (e) => {
+        setHomepage(e.target.value);
     };
 
     const handleGenderChange = (e) => {
         setGender(e.target.value);
     };
 
+    const handleIntroduceChange = (e) => {
+        setIntroduce(e.target.value);
+    };
+
+    const handleClickProfileImage = () => {
+        fileInputRef.current.click();
+    };
+
+    const handleSave = () => {
+        // 수정 사항 저장 로직 구현 (예: 서버에 전송)
+        // 필요한 경우 리디렉션 또는 상태 업데이트 수행
+    };
+
     return (
         <Div>
-            <Headers>
-                <Header_inner>
-                    <Img src={td_house} className='td_house' alt='td_house_pic' />
-                    <h4>커뮤니티</h4>
-                    <h4>쇼핑</h4>
-                    <h4>인테리어/생활</h4>
-                    <SearchContainer>
-                        <SearchIcon src={searchIcon} className='searchIcon' alt="Search Icon" />
-                        <SearchBox type="text" placeholder="통합검색" />
-                    </SearchContainer>
-                    <B_mark src={bookmark} className='bookmark' alt='bookmark_pic' />
-                    <Notation src={notation} className='notation' alt='notation_pic' />
-                    <Cart src={cart} className='cart' alt='cart_pic' />
-                    <Smile src={smile} className='smile' alt='smile_pic' />
-                    <WriteButton>
-                        <ButtonText>글쓰기</ButtonText>
-                        <Arrow src={arrow} alt='화살표' /> {/* 화살표 아이콘 추가 */}
+        <Headers>
+            <Header_inner>
+                <Img src={td_house} className='td_house' alt='td_house_pic' />
+                <h4>커뮤니티</h4>
+                <h4>쇼핑</h4>
+                <h4>인테리어/생활</h4>
+                <SearchContainer>
+                    <SearchIcon src={searchIcon} className='searchIcon' alt="Search Icon" />
+                    <SearchBox type="text" placeholder="통합검색" />
+                </SearchContainer>
+                <B_mark src={bookmark} className='bookmark' alt='bookmark_pic' />
+                <Notation src={notation} className='notation' alt='notation_pic' />
+                <Cart src={cart} className='cart' alt='cart_pic' />
+                <Smile src={smile} className='smile' alt='smile_pic' />
+                <WriteButton>
+                    <ButtonText>글쓰기</ButtonText>
+                    <Arrow src={arrow} alt='화살표' /> {/* 화살표 아이콘 추가 */}
                     </WriteButton>
-                </Header_inner>
-            </Headers>
-            <Menu_Row1>
-                <Menu_Row1_inner>
-                    <h4>프로필</h4>
-                    <h4>나의 쇼핑</h4>
-                    <h4>나의 리뷰</h4>
-                    <h4>설정</h4>
-                </Menu_Row1_inner>
-            </Menu_Row1>
-            <Menu_Row2>
-                <Menu_Row2_inner>
-                    <h4>회원정보수정</h4>
-                    <h4>알림 설정</h4>
-                    <h4>사용자 숨기기 설정</h4>
-                    <h4>전문가 신청</h4>
-                    <h4>비밀번호 변경</h4>
-                    <h4>추천코드</h4>
-                </Menu_Row2_inner>
-            </Menu_Row2>
-            <ProfileContainer>
-                <ProfileForm2>
-                    <h2>회원정보수정</h2>
-                    <h5>탈퇴하기</h5>
-                </ProfileForm2>
-                <ProfileForm>
-                    <ProfileForm3>
-                        <StyledLabel>이메일</StyledLabel>
-                        <StyledInput type='email' placeholder='이메일을 입력하세요' />
-                    </ProfileForm3>
-                    <ProfileForm3>
-                    <p>*필수항목</p>
-                    <p>이메일을 변경하시려면 운영자에게 이메일을 보내주세요.</p>  
-                    </ProfileForm3>
-                    <ProfileForm3>
-                    <StyledLabel>별명</StyledLabel>
-                    <StyledInput type='text' placeholder='별명을 입력하세요' />
-                    </ProfileForm3>
-                    <ProfileForm3>
-                    <p>*필수항목</p>
-                    </ProfileForm3>
-                    <ProfileForm3>
-                    <StyledLabel>홈페이지</StyledLabel>
-                    <StyledInput type='text' placeholder='홈페이지 주소를 입력하세요' />
-                    </ProfileForm3>
-                    <ProfileForm3>
-                    <StyledLabel>성별</StyledLabel>
-                    <RadioContainer>
-                        <RadioInput
-                            type='radio'
-                            id='male'
-                            name='gender'
-                            value='male'
-                            checked={gender === 'male'}
-                            onChange={handleGenderChange}
+                    </Header_inner>
+                </Headers>
+                <Menu_Row1>
+                    <Menu_Row1_inner>
+                        <h4>프로필</h4>
+                        <h4>나의 쇼핑</h4>
+                        <h4>나의 리뷰</h4>
+                        <h4>설정</h4>
+                    </Menu_Row1_inner>
+                </Menu_Row1>
+                <Menu_Row2>
+                    <Menu_Row2_inner>
+                        <h4>회원정보수정</h4>
+                        <h4>알림 설정</h4>
+                        <h4>사용자 숨기기 설정</h4>
+                        <h4>전문가 신청</h4>
+                        <h4>비밀번호 변경</h4>
+                        <h4>추천코드</h4>
+                    </Menu_Row2_inner>
+                </Menu_Row2>
+                <ProfileContainer>
+                    <ProfileForm2>
+                        <h2>회원정보수정</h2>
+                        <h5>탈퇴하기</h5>
+                    </ProfileForm2>
+                    <ProfileForm>
+                        <ProfileForm3>
+                            <StyledLabel>이메일</StyledLabel>
+                            <StyledInput type='email' placeholder='이메일을 입력하세요' value={email} onChange={handleEmailChange}/>
+                        </ProfileForm3>
+                        <ProfileForm3>
+                        <p>*필수항목</p>
+                        <p>이메일을 변경하시려면 운영자에게 이메일을 보내주세요.</p>  
+                        </ProfileForm3>
+                        <ProfileForm3>
+                        <StyledLabel>별명</StyledLabel>
+                        <StyledInput 
+                            type='text' 
+                            placeholder='별명을 입력하세요'
+                            value={nickname}
+                            onChange={handleNicknameChange}
                         />
-                        <RadioLabel htmlFor='male'>남성</RadioLabel>
-                        <RadioInput
-                            type='radio'
-                            id='female'
-                            name='gender'
-                            value='female'
-                            checked={gender === 'female'}
-                            onChange={handleGenderChange}
+                        </ProfileForm3>
+                        <ProfileForm3>
+                        <p>*필수항목</p>
+                        </ProfileForm3>
+                        <ProfileForm3>
+                        <StyledLabel>홈페이지</StyledLabel>
+                        <StyledInput type='text' placeholder='홈페이지 주소를 입력하세요' value={homepage}
+                            onChange={handleHomepageChange}/>
+                        </ProfileForm3>
+                        <ProfileForm3>
+                        <StyledLabel>성별</StyledLabel>
+                        <RadioContainer>
+                            <RadioInput
+                                type='radio'
+                                id='male'
+                                name='gender'
+                                value='male'
+                                checked={gender === 'male'}
+                                onChange={handleGenderChange}
+                            />
+                            <RadioLabel htmlFor='male'>남성</RadioLabel>
+                            <RadioInput
+                                type='radio'
+                                id='female'
+                                name='gender'
+                                value='female'
+                                checked={gender === 'female'}
+                                onChange={handleGenderChange}
+                            />
+                            <RadioLabel htmlFor='female'>여성</RadioLabel>
+                        </RadioContainer>
+                        </ProfileForm3>
+                        <ProfileForm3>
+                        <StyledLabel>생년월일</StyledLabel>
+                        <StyledInput 
+                            type='text' 
+                            placeholder='생일을 입력하세요' 
+                            value={birthDay}
+                            onChange={handleBirthDayChange}
                         />
-                        <RadioLabel htmlFor='female'>여성</RadioLabel>
-                    </RadioContainer>
-                    </ProfileForm3>
-                    <ProfileForm3>
-                    <StyledLabel>생년월일</StyledLabel>
-                    <StyledInput type='text' placeholder='생일을 입력하세요' />
-                    </ProfileForm3>
-                    <ProfileForm3>
-                    <StyledLabel>프로필 이미지</StyledLabel>
-                    <ProfileImage
-                        src={profileImage}
-                        alt='프로필 사진'
-                        onClick={handleClickProfileImage}
-                    />
-                    <input
-                        type='file'
-                        id='fileInput'
-                        style={{ display: 'none' }}
-                        onChange={handleImageChange}
-                        ref={fileInputRef}
-                    />
-                    </ProfileForm3>
-                    <ProfileForm3>
-                    <StyledLabel>한줄 소개</StyledLabel>
-                    <StyledInput type='text' placeholder='한줄 소개를 입력하세요' />
-                    </ProfileForm3>
-                    <Link to="/Profile">
-                        <SaveButton>수정하기</SaveButton>
-                    </Link>
-                </ProfileForm>
-            </ProfileContainer>
-        </Div>
+                        </ProfileForm3>
+                        <ProfileForm3>
+                        <StyledLabel>프로필 이미지</StyledLabel>
+                        <ProfileImage
+                            src={profileImage}
+                            alt='프로필 사진'
+                            onClick={handleClickProfileImage}
+                        />
+                        <input
+                            type='file'
+                            id='fileInput'
+                            style={{ display: 'none' }}
+                            onChange={handleImageChange}
+                            ref={fileInputRef}
+                        />
+                        </ProfileForm3>
+                        <ProfileForm3>
+                        <StyledLabel>한줄 소개</StyledLabel>
+                        <StyledInput type='text' placeholder='한줄 소개를 입력하세요' value={introduce}
+                            onChange={handleIntroduceChange}/>
+                        </ProfileForm3>
+                        <Link to="/Profile">
+                            <SaveButton onClick={handleSave}>수정하기</SaveButton>
+                        </Link>
+                    </ProfileForm>
+                </ProfileContainer>
+            </Div>
     );
 }
 

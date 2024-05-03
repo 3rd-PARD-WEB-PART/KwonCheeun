@@ -1,3 +1,4 @@
+/* 기본 스타일 */
 .App {
   /* text-align: center; */
 }
@@ -5,8 +6,6 @@
 .logo {
   width: 40%;
 }
-/* 전체적인 콘텐츠 너비와 로고 사진 너비를 일치*/
-
 
 .container {
   display: flex;
@@ -15,7 +14,6 @@
   flex-direction: column;
   background-color: #EAEBEF;
 }
-/*백그라운드 색상 지정*/
 
 .register-container {
   text-align: left;
@@ -25,7 +23,6 @@
   margin: 0 auto;
   background-color: #ffffff;
 }
-/*콘텐츠가 있는 부분 백그라운드 지정밑 패딩을 이용한 간격 조절*/
 
 .input-container input {
   width: 100%;
@@ -41,12 +38,12 @@
   margin-bottom: 10px;
 }
 
-h4{
+h4 {
   color: #292929;
   text-align: center;
 }
 
-p{
+p {
   color: #757575;
 }
 
@@ -58,7 +55,45 @@ p{
   border: 1px solid #35C5F0;
   border-radius: 0.25rem;
   font-size: 1.2rem;
-  line-height: 1.5;
   margin-top: 10px;
   margin-bottom: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 모바일 스타일 (max-width: 767px) */
+@media only screen and (max-width: 767px) {
+  .register-container {
+    width: 90%;
+    padding: 4%;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}
+
+/* 태블릿 스타일 (min-width: 768px) and (max-width: 1023px) */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .register-container {
+    width: 60%;
+    padding: 4%;
+  }
+  
+  .btn {
+    width: 60%;
+  }
+}
+
+/* 랩톱 이상 스타일 (min-width: 1024px) */
+@media only screen and (min-width: 1024px) {
+  .register-container {
+    width: 40%;
+    padding: 4%;
+  }
+  
+  .btn {
+    width: 408px;
+  }
 }

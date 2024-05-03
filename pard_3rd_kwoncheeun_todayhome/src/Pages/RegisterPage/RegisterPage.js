@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { emailState, passwordState, passwordCheckState, nicknameState } from '../../Atom.js';
 
 function RegisterPage() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [passwordCheck, setPasswordCheck] = useState('');
-    const [nickname, setNickname] = useState('');
-
+    const [email, setEmail] = useRecoilState(emailState);
+    const [password, setPassword] = useRecoilState(passwordState);
+    const [passwordCheck, setPasswordCheck] = useRecoilState(passwordCheckState);
+    const [nickname, setNickname] = useRecoilState(nicknameState);
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("이메일:", email);
