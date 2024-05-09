@@ -51,9 +51,12 @@ function Header() {
                     <Img src={td_house} className='td_house' alt='td_house_pic' />
                     {!isHidden && (
                         <>
+                        <H_contain>
                             <H_text>커뮤니티</H_text>
                             <H_text>쇼핑</H_text>
                             <H_text>인테리어/생활</H_text>
+                        </H_contain>
+        
                         </>
                     )}
                     <SearchContainer>
@@ -73,7 +76,7 @@ function Header() {
             </Headers>
             <Menu_Row1>
                 <Menu_Row1_inner>
-                    <M1_text>프로필</M1_text>
+                    <M1_text isColored>프로필</M1_text>
                     <M1_text>나의 쇼핑</M1_text>
                     {!isHidden && (
                         <>
@@ -87,7 +90,7 @@ function Header() {
             </Menu_Row1>
             <Menu_Row2>
                 <Menu_Row2_inner>
-                    <M2_text>모두보기</M2_text>
+                    <M2_text isColored>모두보기</M2_text>
                     <M2_text>사진</M2_text>
                     <M2_text>집들이</M2_text>
                     <M2_text>노하우</M2_text>
@@ -98,66 +101,76 @@ function Header() {
             </Menu_Row2>
             <Body_inner>
                 <Profile_inner>
-   
-                    <P_smile src={smile} className='smile' alt='smile_pic' />
-                    <h2>{nickname}</h2>
+
+                    <P_smile src={smile} className='smile' alt='smile_pic' />  
                     <FollowContainer>
+                        <h2>{nickname}</h2> 
                         <FollowInfo>
-                    
                             <p>팔로워 1000M</p>
                             <p>팔로잉 0</p>
                         </FollowInfo>
+                        <Reg1><p>설정</p></Reg1>
                     </FollowContainer>
-                    <Reg1>설정</Reg1>
-
                     <Hr></Hr>
-                    <FollowContainer>
-                        <FollowInfo>
-                            <Bookmark src={b_mark} className='b_mark' alt='b_mark_pic' />
-                            <Like src={liked ? likeRed : like} className='like' alt='like_pic' onClick={handleLikeClick} />
-                            <Cp src={cp} className='cp' alt='cp_pic' /> 
-                        </FollowInfo>
-                    </FollowContainer>
-                    <FollowContainer>
-                        <FollowInfo>
-                            <p>스크랩북</p>
-                            <p>좋아요</p>
-                            <p>내 쿠폰</p>
-                        </FollowInfo>
-                    </FollowContainer>
-                    <FollowContainer>
-                        <FollowInfo>
-                            <h4>0</h4>
-                            <h4>{liked ? '1' : '0'}</h4>
-                            <h4>0</h4>
-                        </FollowInfo>
-                    </FollowContainer>
+                    <F_B>
+                        <Bookmark src={b_mark} className='b_mark' alt='b_mark_pic' />
+                        <Like src={liked ? likeRed : like} className='like' alt='like_pic' onClick={handleLikeClick} />
+                        <Cp src={cp} className='cp' alt='cp_pic' /> 
+                    </F_B>
+                    <F_C>
+                        <p>스크랩북</p>
+                        <p>좋아요</p>
+                        <p>내 쿠폰</p>
+                    </F_C>
+                    <F_N>
+                        <h4>0</h4>
+                        <h4>{liked ? '1' : '0'}</h4>
+                        <h4>0</h4>
+                    </F_N>
                 </Profile_inner>
                 <Content>
                     <StyledParagraph>사진 <NumberText>0</NumberText></StyledParagraph>
                     <RegCenter>
                         <h5 style={{ color: "#757575" }}>+ 첫 번째 사진을 올려보세요.</h5>
                     </RegCenter>
-                    <StyledParagraph>집들이 <NumberText>0</NumberText></StyledParagraph>
-                    <RegCenter>
+                    <StyledParagraph2>집들이 <NumberText>0</NumberText></StyledParagraph2>
+                    <RegCenter2>
                         <h5 style={{ color: "#757575" }}>+ 첫 번째 집들이를 올려보세요.</h5>
-                    </RegCenter>
+                    </RegCenter2>
                 </Content>
             </Body_inner>
         </Div>
         </Container>
     );
 }
+const H_contain = styled.p`
+    display: flex;
+    position: absolute;
+    left: 195px;
+    gap: 30px;
+    @media screen and (min-width: 814px) and (max-width: 1083px) {
+        left: 156px;
+    }
+`;
+
 const H_text = styled.p`
     font-size: 18px;
     color: black;
     font-weight: 700;
+    @media screen and (min-width: 814px) and (max-width: 1083px) {
+        //margin-left: 156px;
+    }
 `;
 
 const M1_text = styled.p`
     font-size: 18px;
     color: black;
     font-weight: 700;
+    ${({ isColored }) =>
+        isColored &&
+        `
+        color: #35C5F0;
+    `}
     @media screen and (max-width: 813px) {
         font-size: 16px;
     }
@@ -167,6 +180,11 @@ const M2_text = styled.p`
     font-size: 15px;
     color: black;
     font-weight: 700;
+    ${({ isColored }) =>
+        isColored &&
+        `
+        color: #35C5F0;
+    `}
     @media screen and (max-width: 813px) {
         font-size: 13px;
     }
@@ -290,10 +308,7 @@ const Menu_Row1_inner = styled.div`
     display: flex;
     justify-content: center;
     gap: 51px;
-    margin-bottom: 10px; /* 각 메뉴 행 간격 조정 */
-    h4:nth-child(1) {
-        color: #35C5F0 /* '프로필' 텍스트에 파란색 적용 */
-    }
+    margin-bottom: 17px; /* 각 메뉴 행 간격 조정 */
     @media screen and (max-width: 813px) {
         width: 813px;
         height: 54px;
@@ -333,9 +348,6 @@ const Menu_Row2_inner = styled.div`
     display: flex;
     justify-content: center;
     gap: 36px;
-    h4:nth-child(1) {
-        color: #35C5F0;
-    }
     @media screen and (max-width: 813px) {
         width: 813px;
         height: 53px;
@@ -348,15 +360,16 @@ const Menu_Row2_inner = styled.div`
 `;
 
 const Body_inner = styled.div`
+    top: 216px;
     width: 1230px;
     height: 783px;
     display: flex;
     justify-content: center;
-    position: relative; /* Body_inner를 기준으로 자식 요소(Profile_inner)의 위치 조정 */
+    position: absolute; /* Body_inner를 기준으로 자식 요소(Profile_inner)의 위치 조정 */
     @media screen and (max-width: 813px) {
         width: 813px;
         height: 988px;
-        flex-direction: row;
+        flex-direction: column;
     }
 
     @media screen and (min-width: 814px) and (max-width: 1083px) {
@@ -371,18 +384,19 @@ const Profile_inner = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 10px; /* 프로필 정보 간격 조정 */
-    position: absolute; /* 부모 요소(Body_inner)를 기준으로 위치를 조정 */
+    position: absolute;
     top: 30.88px; /* 위에서 30.88px 만큼 떨어진 위치 */
     left: 6px; /* 왼쪽 끝에서 6px 만큼 떨어진 위치 */
     border-radius: 3px;
     border: 1px solid #DBDBDB;
     width: 285px;
-    height: 500px;
+    height: 460px;
     flex-shrink: 0;
     @media screen and (max-width: 813px) {
         width: 813px;
         height: auto;
         align-content: left;
+        
     }
 
     @media screen and (min-width: 814px) and (max-width: 1083px) {
@@ -393,28 +407,39 @@ const Profile_inner = styled.div`
 `;
 
 const Content = styled.div`
-    left: 440px;
+    display: flex;
+    flex-direction: column;
     width: 750px;
-    height: 783px;
-    flex-shrink: 0;
+    height: 600px;
     position: absolute;
-    @media screen and (min-width: 814px) {
-        
+    top: 50px;
+    left: 440px;
+    @media screen and (min-width: 813px) {
+        top: 342px;
     }
     @media screen and (min-width: 814px) and (max-width: 1083px) {
         //margin-top: 94px;
+        top: 393px;
+        left: 130px;
     }
 `;
 
 const SearchContainer = styled.div`
     display: flex;
     align-items: center;
+    position: absolute;
+    right: 384px;
+    @media screen and (max-width: 1083px) {
+        display: none;
+    }
 `;
 
 const Contents = styled.img`
     width: 21.5px;
     height: 19px;
     flex-shrink: 0;
+    position: absolute;
+    left: 17px;
     @media screen and (min-width: 814px) {
         display: none;
     }
@@ -433,18 +458,23 @@ const SearchIcon = styled.img`
 `;
 
 const SearchBIcon = styled.img`
-    width: 2opx;
+    width: 20px;
     height: 20x;
     margin-right: 20px; /* 아이콘과 입력 상자 사이 간격 조정 */
+    position:absolute;
+    right: 30px;
     @media screen and (min-width: 1084px) {
         display: none;
+    }
+    @media screen and (min-width: 814px) and (max-width: 1083px) {
+        right: 305px;
     }
 `;
 
 
 const SearchBox = styled.input`
-    width: 360px;
-    height: 43px;
+    width: 192px;
+    height: 33px;
     flex-shrink: 0;
     padding: 5px;
     border-radius: 3px;
@@ -462,24 +492,26 @@ const SearchBox = styled.input`
 const Img = styled.img`
     width: 85px;
     height: 41.488px;
+    left: 56px;
+    position: absolute;
     @media screen and (max-width: 813px) {
-        align-content: center;
+        left: 368px;
         width: 78px;
         height: 38px;
+    }
+    @media screen and (min-width: 814px) and (max-width: 1083px) {
+        left: 34px;
     }
 `;
 
 const Reg = styled.div`
-    top: 92.64px;
+    position: absolute;
+    top: 73px;
     width: 750px;
-    height: 187.282px;
+    height: 188px;
     flex-shrink: 0;
     border: 1px dashed #757575;
     @media screen and (max-width: 813px) {
-
-    }
-
-    @media screen and (min-width: 814px) and (max-width: 1083px) {
 
     }
 `;
@@ -488,11 +520,30 @@ const RegCenter = styled(Reg)`
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
     @media screen and (max-width: 813px) {
 
     }
+`;
 
-    @media screen and (min-width: 814px) and (max-width: 1083px) {
+const Reg2 = styled.div`
+    position: absolute;
+    top: 398px;
+    width: 750px;
+    height: 188px;
+    flex-shrink: 0;
+    border: 1px dashed #757575;
+    @media screen and (max-width: 813px) {
+
+    }
+`;
+
+const RegCenter2 = styled(Reg2)`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    @media screen and (max-width: 813px) {
 
     }
 `;
@@ -500,48 +551,56 @@ const RegCenter = styled(Reg)`
 const B_mark = styled.img`
     width: 18px;
     height: 18.5px;
+    position: absolute;
+    right: 344px;
     @media screen and (max-width: 813px) {
         display: none;
     }
 
     @media screen and (min-width: 814px) and (max-width: 1083px) {
-
+        right: 286px;
     }
 `;
 
 const Notation = styled.img`
     width: 20px;
     height: 22px;
+    position: absolute;
+    right: 304px;
     @media screen and (max-width: 813px) {
         display: none;
     }
 
     @media screen and (min-width: 814px) and (max-width: 1083px) {
-
+        right: 243px;
     }
 `;
 
 const Cart = styled.img`
     width: 23px;
     height: 22.5px;
+    position: absolute;
+    right: 262px;
     @media screen and (max-width: 813px) {
-  
+        right: 16px;
     }
 
     @media screen and (min-width: 814px) and (max-width: 1083px) {
-  
+        right: 204px;
     }
 `;
 
 const Smile = styled.img`
     width: 43.067px;
     height: 43px;
+    position: absolute;
+    right: 201px;
     @media screen and (max-width: 813px) {
         display: none;
     }
 
     @media screen and (min-width: 814px) and (max-width: 1083px) {
-        
+        right: 145px;
     }
 `;
 
@@ -549,14 +608,19 @@ const P_smile = styled.img`
     width: 130px;
     height: 129.504px;
     flex-shrink: 0;
-    margin-top: 31.88px;
-
+    top: 31.88px;
+    position: absolute;
     @media screen and (max-width: 813px) {
-
+        top: 33px;
+        left: 14px;
+        width: 88.344px;
+        height: 88.344px;
+        flex-shrink: 0;
     }
 
     @media screen and (min-width: 814px) and (max-width: 1083px) {
-
+        top: 33px;
+        left: 27px;
     }
 `;
 
@@ -602,6 +666,24 @@ const Cp = styled.img`
 const StyledParagraph = styled.p`
     color: black; /* 텍스트 색상 */
     font-weight: bold; /* 텍스트 굵기 */
+    position: absolute;
+    top: 0px;
+    @media screen and (max-width: 813px) {
+        width: 100%;
+        height: auto;
+    }
+
+    @media screen and (min-width: 814px) and (max-width: 1083px) {
+        width: 100%;
+        height: auto;
+    }
+`;
+
+const StyledParagraph2 = styled.p`
+    color: black; /* 텍스트 색상 */
+    font-weight: bold; /* 텍스트 굵기 */
+    position: absolute;
+    top: 324px;
     @media screen and (max-width: 813px) {
         width: 100%;
         height: auto;
@@ -643,12 +725,16 @@ const WriteButton = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    gap: 8.06px;
+    right: 62px;
     @media screen and (max-width: 813px) {
         display: none;
     }
 
     @media screen and (min-width: 814px) and (max-width: 1083px) {
         width: 69px;
+        right: 42px;
     }
 `;
 
@@ -667,31 +753,106 @@ const ButtonText = styled.span`
     }
 `;
 
-const FollowContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    @media screen and (max-width: 813px) {
 
+const FollowContainer = styled.div`
+    width: 285px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 160px;
+    h2 {
+        color: #000;
+        text-align: center;
+        font-size: 26px;
+        font-weight: 700;
+    }
+    @media screen and (max-width: 813px) {
+        width: 826px;
+        height: 160px;
+        left: 181px;
+        top: 49px;
+        align-items: flex-start;
     }
 
     @media screen and (min-width: 814px) and (max-width: 1083px) {
-
+        width: 826px;
+        height: 160px;
+        top: 20px;
+        left: 181px;
+        align-items: flex-start;
     }
 `;
 
 const FollowInfo = styled.div`
     display: flex;
-    justify-content: space-between;
     gap: 22px;
-    width: 80%;
-    /* 팔로워와 팔로잉 간격 조정을 위한 스타일 설정 */
+    position: absolute;
+    top: 50px;
+    p {
+        color: #000;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 400;
+    }
     @media screen and (max-width: 813px) {
-
+        
     }
 
     @media screen and (min-width: 814px) and (max-width: 1083px) {
+        
+    }  
+`;
 
+const F_B = styled.div`
+    display: flex;
+    gap: 51px;
+    position: absolute;
+    top: 354.64px;
+    @media screen and (max-width: 813px) {
+        gap: 282px;
+    }
+
+    @media screen and (min-width: 814px) and (max-width: 1083px) {
+        gap: 282px;
+        top: 211px;
+    }  
+`;
+
+const F_C= styled.div`
+    display: flex;
+    gap: 46px;
+    position: absolute;
+    top: 383px;
+    p {
+        color: #000;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 400;
+    }
+    @media screen and (max-width: 813px) {
+        left: 124px;
+    }
+
+    @media screen and (min-width: 814px) and (max-width: 1083px) {
+        gap: 269px;
+        top: 235px;
+    }  
+`;
+
+const F_N= styled.div`
+    display: flex;
+    gap: 67px;
+    position: absolute;
+    top: 395px;
+    @media screen and (max-width: 813px) {
+        left: 124px;
+    }
+
+    @media screen and (min-width: 814px) and (max-width: 1083px) {
+        gap: 298px;
+        top: 255px;
     }  
 `;
 
@@ -701,13 +862,18 @@ const Hr = styled.hr`
     flex-shrink: 0;
     stroke-width: 1px;
     color: #EAEBEF;
+    position: absolute;
+    top: 326.25px;
     @media screen and (max-width: 813px) {
         width: 806px;
+        top: 270px;
+        left: 4px;
     }
 
     @media screen and (min-width: 814px) and (max-width: 1083px) {
         width: 948px;
-        top: 434px;
+        top: 185px;
+        left: 27px
     }
 `;
 
@@ -717,7 +883,14 @@ const Reg1 = styled.div`
     flex-shrink: 0;
     border-radius: 5px;
     border: 1px solid #DBDBDB;
-    text-align: center;
+    position: absolute;
+    top: 100px;
+    p {
+        color: #000;
+        text-align: center;
+        font-size: 13px;    
+        font-weight: 400;
+    }
     @media screen and (max-width: 813px) {
 
     }
