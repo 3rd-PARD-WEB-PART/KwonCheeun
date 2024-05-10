@@ -370,6 +370,7 @@ const Body_inner = styled.div`
         width: 813px;
         height: 988px;
         flex-direction: column;
+        justify-items: center;
     }
 
     @media screen and (min-width: 814px) and (max-width: 1083px) {
@@ -506,13 +507,16 @@ const Img = styled.img`
 
 const Reg = styled.div`
     position: absolute;
-    top: 73px;
+    top: -250px;
     width: 750px;
     height: 188px;
-    flex-shrink: 0;
     border: 1px dashed #757575;
     @media screen and (max-width: 813px) {
-
+        top: 400px;
+        left: -410px;
+    }
+    @media screen and (min-width: 814px) and (max-width: 1083px) {
+        top: 94px;
     }
 `;
 
@@ -521,20 +525,21 @@ const RegCenter = styled(Reg)`
     justify-content: center;
     align-items: center;
     position: absolute;
-    @media screen and (max-width: 813px) {
-
-    }
 `;
 
 const Reg2 = styled.div`
     position: absolute;
-    top: 398px;
+    top: 65px;
     width: 750px;
     height: 188px;
     flex-shrink: 0;
     border: 1px dashed #757575;
     @media screen and (max-width: 813px) {
-
+        top: 695px;
+        left: -410px;
+    }
+    @media screen and (min-width: 814px) and (max-width: 1083px) {
+        top: 390px;
     }
 `;
 
@@ -628,54 +633,32 @@ const Bookmark = styled.img`
     width: 23px;
     height: 24.905px;
     flex-shrink: 0;
-    @media screen and (max-width: 813px) {
-
-    }
-
-    @media screen and (min-width: 814px) and (max-width: 1083px) {
-
-    }
 `;
 
 const Like = styled.img`
     width: 30px;
     height: 25.905px;
     flex-shrink: 0;
-    @media screen and (max-width: 813px) {
-
-    }
-
-    @media screen and (min-width: 814px) and (max-width: 1083px) {
-
-    }
 `;
 
 const Cp = styled.img`
     width: 28.5px;
     height: 21.916px;
     flex-shrink: 0;
-    @media screen and (max-width: 813px) {
-
-    }
-
-    @media screen and (min-width: 814px) and (max-width: 1083px) {
-
-    }
 `;
 
 const StyledParagraph = styled.p`
     color: black; /* 텍스트 색상 */
     font-weight: bold; /* 텍스트 굵기 */
     position: absolute;
-    top: 0px;
+    top: -310px;
     @media screen and (max-width: 813px) {
-        width: 100%;
-        height: auto;
+        top: 342px;
+        left: -410px;
     }
 
     @media screen and (min-width: 814px) and (max-width: 1083px) {
-        width: 100%;
-        height: auto;
+        top: 35px;
     }
 `;
 
@@ -683,15 +666,14 @@ const StyledParagraph2 = styled.p`
     color: black; /* 텍스트 색상 */
     font-weight: bold; /* 텍스트 굵기 */
     position: absolute;
-    top: 324px;
+    top: 0px;
     @media screen and (max-width: 813px) {
-        width: 100%;
-        height: auto;
+        top: 637px;
+        left: -410px;
     }
 
     @media screen and (min-width: 814px) and (max-width: 1083px) {
-        width: 100%;
-        height: auto;
+        top: 330px;
     }
 `;
 
@@ -702,15 +684,6 @@ const NumberText = styled.span`
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    @media screen and (max-width: 813px) {
-        width: 100%;
-        height: auto;
-    }
-
-    @media screen and (min-width: 814px) and (max-width: 1083px) {
-        width: 100%;
-        height: auto;
-    }
 `;
 
 const WriteButton = styled.button`
@@ -771,8 +744,8 @@ const FollowContainer = styled.div`
     @media screen and (max-width: 813px) {
         width: 826px;
         height: 160px;
-        left: 181px;
-        top: 49px;
+        left: 124px;
+        top: 12px;
         align-items: flex-start;
     }
 
@@ -795,14 +768,7 @@ const FollowInfo = styled.div`
         text-align: center;
         font-size: 13px;
         font-weight: 400;
-    }
-    @media screen and (max-width: 813px) {
-        
-    }
-
-    @media screen and (min-width: 814px) and (max-width: 1083px) {
-        
-    }  
+    } 
 `;
 
 const F_B = styled.div`
@@ -811,7 +777,8 @@ const F_B = styled.div`
     position: absolute;
     top: 354.64px;
     @media screen and (max-width: 813px) {
-        gap: 282px;
+        gap: 237px;
+        top: 175px;
     }
 
     @media screen and (min-width: 814px) and (max-width: 1083px) {
@@ -832,7 +799,8 @@ const F_C= styled.div`
         font-weight: 400;
     }
     @media screen and (max-width: 813px) {
-        left: 124px;
+        top: 205px;
+        gap: 230px;
     }
 
     @media screen and (min-width: 814px) and (max-width: 1083px) {
@@ -847,7 +815,8 @@ const F_N= styled.div`
     position: absolute;
     top: 395px;
     @media screen and (max-width: 813px) {
-        left: 124px;
+        top: 225px;
+        gap: 255px;
     }
 
     @media screen and (min-width: 814px) and (max-width: 1083px) {
@@ -890,13 +859,6 @@ const Reg1 = styled.div`
         text-align: center;
         font-size: 13px;    
         font-weight: 400;
-    }
-    @media screen and (max-width: 813px) {
-
-    }
-
-    @media screen and (min-width: 814px) and (max-width: 1083px) {
-
     }
 `;
 
