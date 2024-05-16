@@ -1,0 +1,15 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "minzzi0068@gamil.com",
+      "password": "1234",
+      "nickname": "이마크",
+      "homepage": "",
+      "gender": "male",
+      "date": "2000.06.08",
+      "profileImage": "https://i.pinimg.com/236x/17/fe/2c/17fe2c7e6cd5c08acad4cf25b59128b4.jpg",
+      "introduce": "안녕하세요"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue} from 'recoil';
 import { nicknameState } from './Atom.js';
 
 import td_house from "./img/오늘의집.png";
@@ -20,7 +20,7 @@ import likeRed from "./img/likeRed.png";
 
 function Header() {
     const [liked, setLiked] = useState(false); // 초기 값은 좋아요되지 않은 상태
-    const [nickname, setNickname] = useRecoilState(nicknameState);
+    const nickname = useRecoilValue(nicknameState);
 
     const handleLikeClick = () => {
         setLiked(!liked); // 좋아요 상태를 토글

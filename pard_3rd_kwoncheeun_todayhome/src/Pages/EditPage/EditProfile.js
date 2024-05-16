@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import { getUserData, patchUserAPI } from "../../API/AxiosAPI";
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import { useRecoilState } from 'recoil';
@@ -21,45 +22,95 @@ function EditProfile() {
     const [gender, setGender] = useRecoilState(genderState);
     const [introduce, setIntroduce] = useRecoilState(introduceState);
     const [profileImage, setProfileImage] = useRecoilState(profileImageState);
-    const fileInputRef = useRef(null);
+
+    const [userData, setUserData] = useState({
+        id: "1",
+        email: "",
+        password: "",
+        nickname: "",
+        homepage: "",
+        gender: "",
+        date: "",
+        profileImage: "",
+        introduce: ""
+    });
+
+    useEffect(() => {
+        const getData = async () => {
+            const response = await getUserData();
+            const user = response[0];
+            setUserData(user);
+
+            // Initialize Recoil state
+            setEmail(user.email);
+            setNickname(user.nickname);
+            setBirthDay(user.date);
+            setHomepage(user.homepage);
+            setGender(user.gender);
+            setIntroduce(user.introduce);
+            setProfileImage(user.profileImage);
+        };
+        getData();
+    }, []);
 
     const handleImageChange = (e) => {
         const selectedImage = URL.createObjectURL(e.target.files[0]);
         setProfileImage(selectedImage);
     };
 
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
+    const handleChange = (e) => {
+        const { name, value } = e.target;
 
-    const handleNicknameChange = (e) => {
-        setNickname(e.target.value);
-    };
-
-    const handleBirthDayChange = (e) => {
-        setBirthDay(e.target.value);
-    };
-
-    const handleHomepageChange = (e) => {
-        setHomepage(e.target.value);
-    };
-
-    const handleGenderChange = (e) => {
-        setGender(e.target.value);
-    };
-
-    const handleIntroduceChange = (e) => {
-        setIntroduce(e.target.value);
+        // Update Recoil state and local state
+        switch (name) {
+            case 'email':
+                setEmail(value);
+                break;
+            case 'nickname':
+                setNickname(value);
+                break;
+            case 'date':
+                setBirthDay(value);
+                break;
+            case 'homepage':
+                setHomepage(value);
+                break;
+            case 'gender':
+                setGender(value);
+                break;
+            case 'introduce':
+                setIntroduce(value);
+                break;
+            default:
+                break;
+        }
     };
 
     const handleClickProfileImage = () => {
         fileInputRef.current.click();
     };
 
-    const handleSave = () => {
-        // 수정 사항 저장 로직 구현 (예: 서버에 전송)
-        // 필요한 경우 리디렉션 또는 상태 업데이트 수행
+    const handleSave = async () => {
+        const updatedUserData = {
+            id: 1, // 현재 사용자의 ID
+            email,
+            nickname,
+            date: birthDay,
+            homepage,
+            gender,
+            introduce,
+            profileImage,
+        };
+    
+        try {
+            await patchUserAPI(userData.id, updatedUserData); // API 호출을 통해 사용자 데이터 업데이트
+            console.log('User data updated successfully!');
+        } catch (error) {
+            console.error('Failed to save user data:', error);
+        }
     };
+
+    const fileInputRef = useRef(null);
 
     return (
         <Div>
@@ -80,153 +131,157 @@ function EditProfile() {
                 <WriteButton>
                     <ButtonText>글쓰기</ButtonText>
                     <Arrow src={arrow} alt='화살표' /> {/* 화살표 아이콘 추가 */}
-                    </WriteButton>
-                    </Header_inner>
-                </Headers>
-                <Menu_Row1>
-                    <Menu_Row1_inner>
-                        <h4>프로필</h4>
-                        <h4>나의 쇼핑</h4>
-                        <h4>나의 리뷰</h4>
-                        <h4>설정</h4>
-                    </Menu_Row1_inner>
-                </Menu_Row1>
-                <Menu_Row2>
-                    <Menu_Row2_inner>
-                        <h4>회원정보수정</h4>
-                        <h4>알림 설정</h4>
-                        <h4>사용자 숨기기 설정</h4>
-                        <h4>전문가 신청</h4>
-                        <h4>비밀번호 변경</h4>
-                        <h4>추천코드</h4>
-                    </Menu_Row2_inner>
-                </Menu_Row2>
-                <ProfileContainer>
-                    <ProfileForm2>
-                        <h2>회원정보수정</h2>
-                        <h5>탈퇴하기</h5>
-                    </ProfileForm2>
-                    <ProfileForm>
-                        <ProfileForm3>
-                            <StyledLabel>이메일</StyledLabel>
-                            <StyledInput type='email' placeholder='이메일을 입력하세요' value={email} onChange={handleEmailChange}/>
-                        </ProfileForm3>
-                        <ProfileForm3>
-                        <p>*필수항목</p>
-                        <p>이메일을 변경하시려면 운영자에게 이메일을 보내주세요.</p>  
-                        </ProfileForm3>
-                        <ProfileForm3>
-                        <StyledLabel>별명</StyledLabel>
-                        <StyledInput 
-                            type='text' 
-                            placeholder='별명을 입력하세요'
-                            value={nickname}
-                            onChange={handleNicknameChange}
+                </WriteButton>
+            </Header_inner>
+        </Headers>
+        <Menu_Row1>
+            <Menu_Row1_inner>
+                <h4>프로필</h4>
+                <h4>나의 쇼핑</h4>
+                <h4>나의 리뷰</h4>
+                <h4>설정</h4>
+            </Menu_Row1_inner>
+        </Menu_Row1>
+        <Menu_Row2>
+            <Menu_Row2_inner>
+                <h4>회원정보수정</h4>
+                <h4>알림 설정</h4>
+                <h4>사용자 숨기기 설정</h4>
+                <h4>전문가 신청</h4>
+                <h4>비밀번호 변경</h4>
+                <h4>추천코드</h4>
+            </Menu_Row2_inner>
+        </Menu_Row2>
+        <ProfileContainer>
+            <ProfileForm2>
+                <h2>회원정보수정</h2>
+                <h5>탈퇴하기</h5>
+            </ProfileForm2>
+            <ProfileForm>
+                <ProfileForm3>
+                    <StyledLabel>이메일</StyledLabel>
+                    <StyledInput type='email' placeholder='이메일을 입력하세요' name="email" value={email} onChange={handleChange}/>
+                </ProfileForm3>
+                <ProfileForm3>
+                    <p>*필수항목</p>
+                    <p>이메일을 변경하시려면 운영자에게 이메일을 보내주세요.</p>  
+                </ProfileForm3>
+                <ProfileForm3>
+                    <StyledLabel>별명</StyledLabel>
+                    <StyledInput 
+                        type='text' 
+                        placeholder='별명을 입력하세요'
+                        name="nickname"
+                        value={nickname}
+                        onChange={handleChange}
+                    />
+                </ProfileForm3>
+                <ProfileForm3>
+                    <p>*필수항목</p>
+                </ProfileForm3>
+                <ProfileForm3>
+                    <StyledLabel>홈페이지</StyledLabel>
+                    <StyledInput type='text' placeholder='홈페이지 주소를 입력하세요' name="homepage" value={homepage}
+                        onChange={handleChange}/>
+                </ProfileForm3>
+                <ProfileForm3>
+                    <StyledLabel>성별</StyledLabel>
+                    <RadioContainer>
+                        <RadioInput
+                            type='radio'
+                            id='male'
+                            name='gender'
+                            value='male'
+                            checked={gender === 'male'}
+                            onChange={handleChange}
                         />
-                        </ProfileForm3>
-                        <ProfileForm3>
-                        <p>*필수항목</p>
-                        </ProfileForm3>
-                        <ProfileForm3>
-                        <StyledLabel>홈페이지</StyledLabel>
-                        <StyledInput type='text' placeholder='홈페이지 주소를 입력하세요' value={homepage}
-                            onChange={handleHomepageChange}/>
-                        </ProfileForm3>
-                        <ProfileForm3>
-                        <StyledLabel>성별</StyledLabel>
-                        <RadioContainer>
-                            <RadioInput
-                                type='radio'
-                                id='male'
-                                name='gender'
-                                value='male'
-                                checked={gender === 'male'}
-                                onChange={handleGenderChange}
-                            />
-                            <RadioLabel htmlFor='male'>남성</RadioLabel>
-                            <RadioInput
-                                type='radio'
-                                id='female'
-                                name='gender'
-                                value='female'
-                                checked={gender === 'female'}
-                                onChange={handleGenderChange}
-                            />
-                            <RadioLabel htmlFor='female'>여성</RadioLabel>
-                        </RadioContainer>
-                        </ProfileForm3>
-                        <ProfileForm3>
-                        <StyledLabel>생년월일</StyledLabel>
-                        <StyledInput 
-                            type='text' 
-                            placeholder='생일을 입력하세요' 
-                            value={birthDay}
-                            onChange={handleBirthDayChange}
+                        <RadioLabel htmlFor='male'>남성</RadioLabel>
+                        <RadioInput
+                            type='radio'
+                            id='female'
+                            name='gender'
+                            value='female'
+                            checked={gender === 'female'}
+                            onChange={handleChange}
                         />
-                        </ProfileForm3>
-                        <ProfileForm3>
-                        <StyledLabel>프로필 이미지</StyledLabel>
-                        <ProfileImage
-                            src={profileImage}
-                            alt='프로필 사진'
-                            onClick={handleClickProfileImage}
-                        />
-                        <input
-                            type='file'
-                            id='fileInput'
-                            style={{ display: 'none' }}
-                            onChange={handleImageChange}
-                            ref={fileInputRef}
-                        />
-                        </ProfileForm3>
-                        <ProfileForm3>
-                        <StyledLabel>한줄 소개</StyledLabel>
-                        <StyledInput type='text' placeholder='한줄 소개를 입력하세요' value={introduce}
-                            onChange={handleIntroduceChange}/>
-                        </ProfileForm3>
-                        <Link to="/Profile">
-                            <SaveButton onClick={handleSave}>수정하기</SaveButton>
-                        </Link>
-                    </ProfileForm>
-                </ProfileContainer>
-            </Div>
+                        <RadioLabel htmlFor='female'>여성</RadioLabel>
+                    </RadioContainer>
+                </ProfileForm3>
+                <ProfileForm3>
+                    <StyledLabel>생년월일</StyledLabel>
+                    <StyledInput 
+                        type='text' 
+                        placeholder='생일을 입력하세요' 
+                        name="date"
+                        value={birthDay}
+                        onChange={handleChange}
+                    />
+                </ProfileForm3>
+                <ProfileForm3>
+                    <StyledLabel>프로필 이미지</StyledLabel>
+                    <ProfileImage
+                        src={profileImage || profilePlaceholder}
+                        alt='프로필 사진'
+                        onClick={handleClickProfileImage}
+                    />
+                    <StyledInput
+                        type="file"
+                        ref={fileInputRef}
+                        style={{ display: 'none' }}
+                        onChange={handleImageChange}
+                    />
+                </ProfileForm3>
+                <ProfileForm3>
+                    <StyledLabel>자기소개</StyledLabel>
+                    <StyledInput 
+                        type='text' 
+                        placeholder='자기소개를 입력하세요'
+                        name="introduce"
+                        value={introduce}
+                        onChange={handleChange}
+                    />
+                </ProfileForm3>
+            </ProfileForm>
+            <Link to="/profile">
+                <SaveButton onClick={handleSave}>수정하기</SaveButton>
+            </Link>
+        </ProfileContainer>
+    </Div>
     );
 }
 
+// 스타일 컴포넌트
 const Div = styled.div`
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background: #FFF;
 `;
 
 const Arrow = styled.img`
-    width: 12.626px;
-    height: 6.5px;
-    flex-shrink: 0;
-    stroke-width: 1px;
-    stroke: #FFF;
+    width: 16px;
+    height: 16px;
+    margin-left: 8px;
 `;
 
 const Headers = styled.div`
-    width: 1914px;
-    height: 86px;
+    width: 1920px;
+    height: 82px;
     flex-shrink: 0;
-    border-bottom: 1px solid #EAEBEF;
     background: #FFF;
     display: flex;
     flex-direction: column;
     align-items: center;
-`
+`;
 
 const Header_inner = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
     width: 1230px;
-    height: 85px;
-    flex-shrink: 0; 
+    height: 81px;
+    flex-shrink: 0;
+    background: #FFF;
+    display: flex;
+    justify-content: center;
     gap: 30px; /* 아이콘 간격 조정 */
     justify-content: center;
     background: rgba(255, 255, 255, 0.50);
